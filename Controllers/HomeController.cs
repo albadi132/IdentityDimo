@@ -1,4 +1,5 @@
-﻿using IdentityDimo.Models;
+﻿using IdentityDimo.Data;
+using IdentityDimo.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -14,15 +15,18 @@ namespace IdentityDimo.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IdentityDimoContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IdentityDimoContext db)
         {
             _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            var Cate = _db.Categorys.ToList();
+            return View(Cate);
         }
 
         public IActionResult Privacy()

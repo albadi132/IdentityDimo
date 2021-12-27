@@ -15,15 +15,7 @@ namespace IdentityDimo.Areas.Identity
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((context, services) => {
-                services.AddDbContext<IdentityDimoContext>(options =>
-                    options.UseMySql(
-                        context.Configuration.GetConnectionString("IdentityDimoContextConnection")));
-
-                services.AddDefaultIdentity<IdentityDimoUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                    .AddRoles<IdentityRole>()
-                    .AddEntityFrameworkStores<IdentityDimoContext>();
-            });
+           
         }
     }
 }
